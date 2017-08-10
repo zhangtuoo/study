@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>crm</display-name>
+   <!-- 启动spring的配置文件 -->
+  <context-param>
+  	<!-- param-name 写死的不能改 -->
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/applicationContext*.xml</param-value>
+  </context-param>
+  <!-- 在tomcat启动的时候启动spring -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  
+  <!-- 第一次访问的时候初始化springmvc -->
+  <servlet>
+  	<servlet-name>springmvc</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  		<!-- param-name 写死的不能改 -->
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath:spring/springmvc.xml</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>springmvc</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
